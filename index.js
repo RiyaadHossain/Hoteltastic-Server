@@ -9,7 +9,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded())
 
 // Local Middlewares
-app.use()
+// app.use()
 
 // DB Confiq
 require("./db/dbConfig")
