@@ -11,6 +11,7 @@ const userRoute = require("./route/userRoute")
 const adminRoute = require("./route/adminRoute")
 const hotelRoute = require("./route/hotelRoute")
 const reviewRoute = require("./route/reviewRoute")
+const paymentRoute = require("./route/paymentRoute")
 
 // Third-party Middlewares
 app.use(bodyParser.json())
@@ -24,5 +25,6 @@ app.use("/api/user", userRoute)
 app.use("/api/admin", adminRoute)
 app.use("/api/room", hotelRoute)
 app.use("/api/review", reviewRoute)
+app.use("/api/payment", paymentRoute)
 
 app.listen(PORT, () => console.log(`Server running on PORT: ${PORT}`))
