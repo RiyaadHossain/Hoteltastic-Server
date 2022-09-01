@@ -6,4 +6,4 @@ const route = express.Router()
 
 route.get("/payment", authenticateUser, paymentController.payment)
 
-module.exports = route
+module.exports = route 
