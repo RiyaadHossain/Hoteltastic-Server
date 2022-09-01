@@ -9,6 +9,7 @@ dotenv.config()
 // Local Middlewares
 const userRoute = require("./route/userRoute")
 const adminRoute = require("./route/adminRoute")
+const hotelRoute = require("./route/hotelRoute")
 
 // Third-party Middlewares
 app.use(bodyParser.json())
@@ -20,5 +21,6 @@ require("./db/dbConfig")
 // Local Middlewares
 app.use("/api/user", userRoute)
 app.use("/api/admin", adminRoute)
+app.use("/api/admin", hotelRoute)
 
 app.listen(PORT, () => console.log(`Server running on PORT: ${PORT}`))
