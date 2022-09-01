@@ -12,7 +12,7 @@ const adminRoute = require("./route/adminRoute")
 
 // Third-party Middlewares
 app.use(bodyParser.json())
-// app.use(bodyParser.urlencoded())
+app.use(bodyParser.urlencoded({limit: "30mb", extended: true}))
 
 // DB Confiq
 require("./db/dbConfig")
