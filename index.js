@@ -21,6 +21,6 @@ require("./db/dbConfig")
 // Local Middlewares
 app.use("/api/user", userRoute)
 app.use("/api/admin", adminRoute)
-app.use("/api/admin", hotelRoute)
+app.use("/api/room", hotelRoute)
 
 app.listen(PORT, () => console.log(`Server running on PORT: ${PORT}`))
