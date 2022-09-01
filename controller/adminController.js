@@ -14,11 +14,11 @@ module.exports.signUp = async (req, res) => {
     } else {
 
         const hash_password = await bcrypt.hash(password, 10)
-        const newUser = new User({ name, email, hash_password, picture, paymentId, reviewId, role: "user" })
+        const newUser = new User({ name, email, hash_password, picture, paymentId, reviewId, role: "admin" })
 
         try {
             const user = await newUser.save()
-            res.status(200).json({ message: "User Signed Up successfully.", user })
+            res.status(200).json({ message: "Admin Signed Up successfully.", user })
         } catch (error) {
             res.status(500).json({ error })
         }
@@ -38,13 +38,13 @@ module.exports.signIn = async (req, res) => {
             const { _id, role } = user
             if (passwordCorrect) {
                 const token = jwt.sign({ _id, role }, process.env.JWT_SECRET)
-                res.status(200).json({ message: "User SignIn Successfully.", token, user })
+                res.status(200).json({ message: "Admin SignIn Successfully.", token, user })
             } else {
                 res.status(500).json({ error: "Authentication Failed!" })
             }
 
         } else {
-            res.status(500).json({ error: "User Not found!" })
+            res.status(500).json({ error: "Admin Not found!" })
         }
 
     } catch (error) {
