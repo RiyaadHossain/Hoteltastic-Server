@@ -30,7 +30,7 @@ app.use("/api/payment", paymentRoute)
 
 // Health Check
 app.get("/", (req, res) => {
-    res.send("Hello World!")
+    res.json({message: "Hello from Express server."})
 })
 
 app.listen(PORT, () => console.log(`Server running on PORT: ${PORT}`))
