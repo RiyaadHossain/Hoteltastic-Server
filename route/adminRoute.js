@@ -1,7 +1,7 @@
 const express = require('express');
 const route = express.Router()
 const controller = require('../controller/adminController');
-const commonMiddleware = require('../middleware/middleware');
+const commonMiddleware = require('..//middleware/auth');
 
 route.post("/signup", controller.signUp)
 route.post("/signin", controller.signIn)

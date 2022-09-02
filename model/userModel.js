@@ -23,7 +23,7 @@ const userSchema = mongoose.Schema({
         enum: ["user", "admin"],
         default: "user"
     },
-    picture: String,
+    avatar: String,
     paymentId: String,
     reviewId: String,
 
