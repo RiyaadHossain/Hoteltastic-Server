@@ -15,6 +15,7 @@ const paymentRoute = require("./route/paymentRoute")
 
 // Third-party Middlewares
 app.use(bodyParser.json())
+app.use(express.static("uploads"))
 app.use(bodyParser.urlencoded({limit: "30mb", extended: true}))
 
 // DB Confiq
@@ -26,5 +27,10 @@ app.use("/api/admin", adminRoute)
 app.use("/api/room", hotelRoute)
 app.use("/api/review", reviewRoute)
 app.use("/api/payment", paymentRoute)
+
+// Health Check
+app.get("/", (req, res) => {
+    res.json({message: "Hello from Express server."})
+})
 
 app.listen(PORT, () => console.log(`Server running on PORT: ${PORT}`))
