@@ -28,7 +28,13 @@ module.exports.getRoom = async (req, res) => {
 
 // Create Room Controller _____________________
 module.exports.createRoom = async (req, res) => {
+
+    let roomPhoto;
     const roomDetails = req.body
+    if (req.file) {
+        roomPhoto = process.env.BASE_URL + req.file.filename
+        roomDetails["roomPhoto"] = roomPhoto
+    }
     const newRoom = new Room(roomDetails)
 
     try {
@@ -58,7 +64,7 @@ module.exports.deleteRoom = async (req, res) => {
 
     try {
         await Room.findByIdAndDelete({ _id: id })
-        res.status(201).json({ message: "Room Deleted Successfully!"})
+        res.status(201).json({ message: "Room Deleted Successfully!" })
     } catch (error) {
         res.status(500).json({ error: error.message })
     }

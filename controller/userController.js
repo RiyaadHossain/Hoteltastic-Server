@@ -5,8 +5,9 @@ const bcrypt = require('bcrypt');
 // SignIn Controller_____________________
 module.exports.signUp = async (req, res) => {
 
+    let avatar;
     const { name, email, password, picture, paymentId, reviewId } = req.body
-
+    if(req.file) avatar = process.env.BASE_URL + req.file.filename
     const userExist = await User.findOne({ email })
 
     if (userExist) {
@@ -14,7 +15,7 @@ module.exports.signUp = async (req, res) => {
     } else {
 
         const hash_password = await bcrypt.hash(password, 10)
-        const newUser = new User({ name, email, hash_password, picture, paymentId, reviewId, role: "user" })
+        const newUser = new User({ name, email, hash_password, picture, paymentId, avatar, reviewId, role: "user" })
 
         try {
             const user = await newUser.save()
