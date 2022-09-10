@@ -33,4 +33,6 @@ app.get("/", (req, res) => {
     res.json({message: "Hello from Express server."})
 })
 
+const error = new Error('There is an error')
+console.log(error.message)
 app.listen(PORT, () => console.log(`Server running on PORT: ${PORT}`))
