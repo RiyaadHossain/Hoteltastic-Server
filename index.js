@@ -34,5 +34,5 @@ app.get("/", (req, res) => {
 })
 
 const error = new Error('There is an error')
-console.log(error.message)
+console.log(error.message)d
 app.listen(PORT, () => console.log(`Server running on PORT: ${PORT}`))
