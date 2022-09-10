@@ -30,8 +30,6 @@ app.use("/api/payment", paymentRoute)
 
 // Health Check
 app.get("/", (req, res) => {
-    const error = new Error('There is an error')
-    console.log(error.message)d
     res.json({message: "Hello from Express server."})
 })
 
