@@ -16,6 +16,7 @@ const hotelRoute = require("./route/hotelRoute");
 const reviewRoute = require("./route/reviewRoute");
 const paymentRoute = require("./route/paymentRoute");
 const socialRoute = require("./route/socialRoute");
+const emailRoute = require("./route/emailRoute");
 // Third-party Middlewares
 app.use(bodyParser.json());
 app.use(express.static("uploads"));
@@ -46,6 +47,7 @@ app.use("/api/room", hotelRoute);
 app.use("/api/review", reviewRoute);
 app.use("/api/payment", paymentRoute);
 app.use("/auth", socialRoute);
+app.use("/api/email", emailRoute);
 
 // Health Check
 app.get("/", (req, res) => {

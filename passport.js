@@ -16,7 +16,8 @@ passport.use(
       scope: ["profile", "email"], //test
     },
     function (accessToken, refreshToken, profile, done) {
-      console.log(profile._json); //* save it to db
+      const { name, email, picture } = profile._json;
+      console.log({ name: name, email: email, picture: picture }); //* save it to db
       done(null, profile);
     }
   )
