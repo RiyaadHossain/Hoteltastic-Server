@@ -2,6 +2,7 @@ require("dotenv").config();
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
 const passport = require("passport");
+const UserModel = require("./model/userModel");
 
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 
@@ -15,8 +16,15 @@ passport.use(
       callbackURL: "/auth/google/callback",
       scope: ["profile", "email"], //test
     },
-    function (accessToken, refreshToken, profile, done) {
+    function async(accessToken, refreshToken, profile, done) {
       const { name, email, picture } = profile._json;
+      const newUser = new UserModel({ name, email, avatar: picture });
+      try {
+        const data = newUser.save();
+        res.status(200).json({ message: "sign in success", result: data });
+      } catch (error) {
+        res.status(500).json({ error: error.message });
+      }
       console.log({ name: name, email: email, picture: picture }); //* save it to db
       done(null, profile);
     }
