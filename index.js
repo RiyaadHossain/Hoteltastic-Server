@@ -46,7 +46,7 @@ app.use("/api/admin", adminRoute);
 app.use("/api/room", hotelRoute);
 app.use("/api/review", reviewRoute);
 app.use("/api/payment", paymentRoute);
-app.use("/auth", socialRoute);
+app.use("/api/auth", socialRoute);
 app.use("/api/email", emailRoute);
 
 // Health Check
