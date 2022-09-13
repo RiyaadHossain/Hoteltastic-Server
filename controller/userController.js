@@ -52,3 +52,8 @@ module.exports.signIn = async (req, res) => {
         res.status(500).json({ error })
     }
 }
+
+// Get User Controller_____________________
+module.exports.getUser = async(req, res) => {
+    // const {email}
+}
