@@ -8,6 +8,21 @@ const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 
+const storeUer = async ({ name, email, picture }) => {
+
+  try {
+    const userExist = await UserModel.findOne({ email: email })
+    if (!userExist) {
+
+      const user = new UserModel({ name, email, avatar: picture })
+      await user.save()
+    }
+  } catch (error) {
+    console.log(error)
+  }
+
+}
+
 passport.use(
   new GoogleStrategy(
     {
@@ -17,15 +32,8 @@ passport.use(
       scope: ["profile", "email"], //test
     },
     function async(accessToken, refreshToken, profile, done) {
-      const { name, email, picture } = profile._json;
-      const newUser = new UserModel({ name, email, avatar: picture });
-      try {
-        const data = newUser.save();
-        res.status(200).json({ message: "sign in success", result: data });
-      } catch (error) {
-        res.status(500).json({ error: error.message });
-      }
-      console.log({ name: name, email: email, picture: picture }); //* save it to db
+
+      storeUer(profile._json)
       done(null, profile);
     }
   )
@@ -39,3 +47,20 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((user, done) => {
   done(null, user);
 });
+
+/* try {
+ 
+
+
+  //   if (userExist) {
+  //     UserModel.patch({ email }, { name, email, avatar: picture })
+  //   } else {
+
+  //     const newUser = new UserModel({ name, email, avatar: picture });
+  //     newUser.save();
+
+  //   }
+
+} catch (error) {
+  console.log(error)
+} */

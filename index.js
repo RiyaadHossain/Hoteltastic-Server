@@ -23,8 +23,8 @@ app.use(express.static("uploads"));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(
   cors({
-    origin: "http://localhost:3000", //* clients url
-    methods: "GET,POST,PUT,DELETE",
+    origin: ['https://hoteltastic.netlify.app/', 'http://localhost:3000'], //* clients url
+    methods: "GET,POST,PUT,PATCH,DELETE",
     credentials: true,
   })
 );
@@ -46,7 +46,7 @@ app.use("/api/admin", adminRoute);
 app.use("/api/room", hotelRoute);
 app.use("/api/review", reviewRoute);
 app.use("/api/payment", paymentRoute);
-app.use("/api/auth", socialRoute);
+app.use("/auth", socialRoute);
 app.use("/api/email", emailRoute);
 
 // Health Check

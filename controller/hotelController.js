@@ -31,14 +31,16 @@ module.exports.createRoom = async (req, res) => {
 
     let roomPhoto;
     const roomDetails = req.body
+    console.log(roomDetails)
     if (req.file) {
+        console.log(req.file)
         roomPhoto = process.env.BASE_URL + req.file.filename
-        roomDetails["roomPhoto"] = roomPhoto
+        roomDetails["picture"] = roomPhoto
     }
     const newRoom = new Room(roomDetails)
-
     try {
         const result = await newRoom.save()
+        console.log({ result })
         res.status(201).json({ message: "Room Created Successfully!", result })
     } catch (error) {
         res.status(500).json({ error: error.message })

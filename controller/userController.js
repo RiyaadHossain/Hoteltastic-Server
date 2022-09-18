@@ -21,7 +21,7 @@ module.exports.signUp = async (req, res) => {
             paymentId,
             avatar,
             reviewId,
-            role: "user",
+            role: "User",
         });
 
         try {
@@ -33,7 +33,20 @@ module.exports.signUp = async (req, res) => {
     }
 };
 
-// SignIn Controller_____________________
+// Social SignIn Controller_____________________
+module.exports.socialLogin = async (req, res) => {
+    const { email } = req.body
+    const user = await User.findOne({ email })
+  
+    try {
+        res.status(200).json({ message: "User Signed Up successfully.", user })
+    } catch (error) {
+        res.status(200).json({ error: "Authentication Failed!", error: error.message })
+
+    }
+}
+
+// SignUp Controller_____________________
 module.exports.signIn = async (req, res) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
