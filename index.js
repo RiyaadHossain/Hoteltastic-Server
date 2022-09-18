@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(
   cors({
     origin: ['https://hoteltastic.netlify.app/', 'http://localhost:3000'], //* clients url
-    methods: "GET,POST,PUT,DELETE",
+    methods: "GET,POST,PUT,PATCH,DELETE",
     credentials: true,
   })
 );
