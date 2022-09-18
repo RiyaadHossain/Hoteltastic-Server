@@ -16,7 +16,11 @@ const roomSchema = mongoose.Schema({
         required: true,
         trim: true
     },
-    roomPhoto: String,
+    category: {
+        type: String,
+        required: true
+    },
+    picture: String,
     facility: String,
     reviewId: String
 })
