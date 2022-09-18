@@ -21,7 +21,7 @@ module.exports.signUp = async (req, res) => {
             paymentId,
             avatar,
             reviewId,
-            role: "user",
+            role: "User",
         });
 
         try {

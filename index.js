@@ -23,7 +23,7 @@ app.use(express.static("uploads"));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(
   cors({
-    origin: "http://localhost:3000", //* clients url
+    origin: "*", //* clients url
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })

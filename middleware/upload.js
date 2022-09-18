@@ -8,7 +8,8 @@ const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, filePath)
     },
-    filename: (req, file, cb) => {
+    filename: (req, file, cb) => { 
+        console.log(file)
         const fileExt = path.extname(file.originalname)
         const fileName = file.originalname
             .replace(fileExt, "")
@@ -26,6 +27,7 @@ const upload = multer({
         fieldSize: "1000000" // 1MB
     },
     fileFilter: (req, file, cb) => {
+        console.log(file)
         if (file.mimetype === "image/jpg" || file.mimetype === "image/png" || file.mimetype === "image/jpeg") {
             cb(null, true)
         } else {

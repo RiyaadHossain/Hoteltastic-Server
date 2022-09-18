@@ -14,7 +14,7 @@ module.exports.signUp = async (req, res) => {
     } else {
 
         const hash_password = await bcrypt.hash(password, 10)
-        const newUser = new User({ name, email, hash_password, picture, paymentId, reviewId, role: "admin" })
+        const newUser = new User({ name, email, hash_password, picture, paymentId, reviewId, role: "Admin" })
 
         try {
             const user = await newUser.save()
