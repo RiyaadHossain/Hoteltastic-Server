@@ -20,6 +20,10 @@ const roomSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    status: {
+        default: 'Open',
+        enum: ['Open', 'Close']
+    },
     picture: String,
     facility: String,
     reviewId: String
