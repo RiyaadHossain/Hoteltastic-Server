@@ -21,6 +21,7 @@ const roomSchema = mongoose.Schema({
         required: true
     },
     status: {
+        type: String,
         default: 'Open',
         enum: ['Open', 'Close']
     },
