@@ -2,6 +2,30 @@ const User = require('../model/userModel')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
+// Get Users Controller _____________________
+module.exports.getUsers = async (req, res) => {
+	try {
+		const users = await User.find()
+		res.status(200).json({ users })
+	} catch (error) {
+		res.status(500).json({ error: error.message })
+	}
+}
+
+// Update User Controller _____________________
+module.exports.updateUser = async (req, res) => {
+	const updatedDetails = req.body
+	const { id } = req.params
+	try {
+		const result = await User.findByIdAndUpdate({ _id: id }, updatedDetails, {
+			new: true,
+		})
+		res.status(201).json({ message: 'User Updated Successfully!', result })
+	} catch (error) {
+		res.status(500).json({ error: error.message })
+	}
+}
+
 // SignIn Controller_____________________
 module.exports.signUp = async (req, res) => {
 	let avatar
@@ -37,11 +61,10 @@ module.exports.signUp = async (req, res) => {
 module.exports.socialLogin = async (req, res) => {
 	const { email } = req.body
 	const user = await User.findOne({ email })
-
 	try {
 		res.status(200).json({ message: 'User Signed Up successfully.', user })
 	} catch (error) {
-		res.status(200).json({
+		res.status(500).json({
 			error: 'Authentication Failed!',
 			error: error.message,
 		})
