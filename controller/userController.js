@@ -114,3 +114,17 @@ module.exports.getUser = async (req, res) => {
 		res.status(400).json({ error: error.message })
 	}
 }
+
+// Get User Controller_____________________
+module.exports.getAllAdmin = async (req, res) => {
+	// const { email } = req.params
+
+	try {
+		const admins = await User.find({ role: 'Admin' })
+		// if (user) {
+		res.status(200).json({ admins })
+		// }
+	} catch (error) {
+		res.status(400).json({ error: error.message })
+	}
+}
