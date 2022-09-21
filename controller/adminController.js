@@ -20,7 +20,7 @@ module.exports.signUp = async (req, res) => {
             const user = await newUser.save()
             res.status(200).json({ message: "Admin Signed Up successfully.", user })
         } catch (error) {
-            res.status(500).json({ error })
+            res.status(403).json({ error })
         }
     }
 
