@@ -22,6 +22,11 @@ const userSchema = mongoose.Schema({
     enum: ["User", "Admin"],
     default: "User",
   },
+  status: {
+    type: String,
+    enum: ["BanUser", "ValidUser"],
+    default: "ValidUser",
+  },
   avatar: String,
   paymentId: String,
   reviewId: String,
