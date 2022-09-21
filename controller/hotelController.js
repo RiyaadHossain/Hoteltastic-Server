@@ -29,14 +29,8 @@ module.exports.getRoom = async (req, res) => {
 // Create Room Controller _____________________
 module.exports.createRoom = async (req, res) => {
 
-    let roomPhoto;
     const roomDetails = req.body
-    console.log(roomDetails)
-    if (req.file) {
-        console.log(req.file)
-        roomPhoto = process.env.BASE_URL + req.file.filename
-        roomDetails["picture"] = roomPhoto
-    }
+
     const newRoom = new Room(roomDetails)
     try {
         const result = await newRoom.save()
@@ -51,7 +45,6 @@ module.exports.createRoom = async (req, res) => {
 module.exports.updateRoom = async (req, res) => {
     const updatedDetails = req.body
     const { id } = req.params
-
     try {
         const result = await Room.findByIdAndUpdate({ _id: id }, updatedDetails, { new: true })
         res.status(201).json({ message: "Room Updated Successfully!", result })
