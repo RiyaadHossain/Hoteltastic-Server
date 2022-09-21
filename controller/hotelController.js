@@ -51,7 +51,6 @@ module.exports.createRoom = async (req, res) => {
 module.exports.updateRoom = async (req, res) => {
     const updatedDetails = req.body
     const { id } = req.params
-
     try {
         const result = await Room.findByIdAndUpdate({ _id: id }, updatedDetails, { new: true })
         res.status(201).json({ message: "Room Updated Successfully!", result })

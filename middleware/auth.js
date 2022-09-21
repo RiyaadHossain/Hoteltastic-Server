@@ -8,7 +8,7 @@ module.exports.authenticateUser = async (req, res, next) => {
         const token = req.headers.authorization.split(" ")[1]
         const { _id, role } = jwt.decode(token, process.env.JWT_SECRET)
         const user = await User.findOne({ _id, role })
-        if (user && role === "user") {
+        if (user && role === "User") {
             req.user = user
             next()
         } else {
@@ -27,7 +27,7 @@ module.exports.authenticateAdmin = async (req, res, next) => {
         const token = req.headers.authorization.split(" ")[1]
         const { _id, role } = jwt.decode(token, process.env.JWT_SECRET)
         const admin = await User.findOne({ _id, role })
-        if (admin && role === "admin") {
+        if (admin && role === "Admin") {
             req.admin = admin
             next()
         } else {
