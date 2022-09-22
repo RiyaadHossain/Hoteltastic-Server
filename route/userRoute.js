@@ -12,6 +12,7 @@ route.get("/getUser/:email", controller.getUser)
 route.get("/allUsers", controller.getUsers)
 route.get("/favourite-room", authenticateUser, controller.getFavouriteRoom)
 route.post("/favourite-room", authenticateUser, controller.postFavouriteRoom)
+route.delete("/favourite-room/:id", authenticateUser, controller.deleteFavouriteRoom)
 
 
 

@@ -157,12 +157,28 @@ module.exports.getFavouriteRoom = async (req, res) => {
 // Post Favourite Controller_____________________
 module.exports.postFavouriteRoom = async (req, res) => {
 	const { user, room } = req.body
-	console.log(user, room);
 	try {
-		// const favRoom = new 
+
 		const favouriteRoom = await Favourite.create({ user, room })
 
 		res.status(201).json({ favouriteRoom })
+
+	} catch (error) {
+		console.log(error)
+		res.status(400).json({ error: error.message })
+	}
+}
+
+
+// Delete Favourite Controller_____________________
+module.exports.deleteFavouriteRoom = async (req, res) => {
+	const { id } = req.params
+	console.log(id)
+	try {
+		const favouriteRoom = await Favourite.deleteOne({ _id: id })
+		if (favouriteRoom) {
+			res.status(200).json({ message: 'Favourite item deleted Successfully!' })
+		}
 
 	} catch (error) {
 		console.log(error)
