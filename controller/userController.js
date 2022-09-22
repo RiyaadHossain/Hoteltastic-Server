@@ -1,4 +1,5 @@
 const User = require('../model/userModel')
+const Favourite = require('../model/favouriteModel')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
@@ -125,6 +126,46 @@ module.exports.getAllAdmin = async (req, res) => {
 		res.status(200).json({ admins })
 		// }
 	} catch (error) {
+		res.status(400).json({ error: error.message })
+	}
+}
+
+
+// Get Favourite Controller_____________________
+module.exports.getFavouriteRoom = async (req, res) => {
+
+	console.log(req.user);
+	try {
+		if (!req.user) {
+			return res.status(403).json({ error: "User Not Found!" })
+		}
+		const favouriteRoom = await Favourite.find({ user: req.user._id }).populate('user').populate('room')
+
+		if (favouriteRoom.length) {
+
+			res.status(200).json({ favouriteRoom })
+		} else {
+
+			res.status(200).json({ message: "There is no Room Info You marked as Favourite." })
+		}
+	} catch (error) {
+		res.status(400).json({ error: error.message })
+	}
+}
+
+
+// Post Favourite Controller_____________________
+module.exports.postFavouriteRoom = async (req, res) => {
+	const { user, room } = req.body
+	console.log(user, room);
+	try {
+		// const favRoom = new 
+		const favouriteRoom = await Favourite.create({ user, room })
+
+		res.status(201).json({ favouriteRoom })
+
+	} catch (error) {
+		console.log(error)
 		res.status(400).json({ error: error.message })
 	}
 }
