@@ -1,22 +1,22 @@
 const mongoose = require('mongoose');
 
 const roomSchema = mongoose.Schema({
-    name: {
+    propertyName: {
         type: String,
         required: true,
         trim: true
     },
-    description: {
+    propertyDesciption: {
         type: String,
         required: true,
         trim: true
     },
-    price: {
+    startFrom: {
         type: Number,
         required: true,
         trim: true
     },
-    category: {
+    propertyImage: {
         type: String,
         required: true
     },
@@ -25,9 +25,10 @@ const roomSchema = mongoose.Schema({
         default: 'Open',
         enum: ['Open', 'Close']
     },
-    picture: String,
-    facility: String,
-    reviewId: String
+    authorName: String,
+    favorite: String,
+    sqFt: String,
+    beds: String,
 })
 
 const roomModel = mongoose.model("Room", roomSchema)
