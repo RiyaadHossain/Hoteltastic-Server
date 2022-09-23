@@ -22,7 +22,6 @@ module.exports.updateUser = async (req, res) => {
 			new: true,
 		})
 		
-		console.log(result)
 		res.status(201).json({ message: 'User Updated Successfully!', result })
 	} catch (error) {
 		console.log(error);
