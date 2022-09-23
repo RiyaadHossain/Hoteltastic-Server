@@ -158,11 +158,11 @@ module.exports.getFavouriteRoom = async (req, res) => {
 
 // Post Favourite Controller_____________________
 module.exports.postFavouriteRoom = async (req, res) => {
-	const { user, room } = req.body
+	const { user, room } = req.body;
+	// console.log(user, room);
 	try {
 
 		const favouriteRoom = await Favourite.create({ user, room })
-
 		res.status(201).json({ favouriteRoom })
 
 	} catch (error) {
