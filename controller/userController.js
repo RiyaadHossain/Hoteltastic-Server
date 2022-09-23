@@ -1,4 +1,5 @@
 const User = require('../model/userModel')
+const Favourite = require('../model/favouriteModel')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
@@ -20,8 +21,11 @@ module.exports.updateUser = async (req, res) => {
 		const result = await User.findByIdAndUpdate({ _id: id }, updatedDetails, {
 			new: true,
 		})
+		
+		console.log(result)
 		res.status(201).json({ message: 'User Updated Successfully!', result })
 	} catch (error) {
+		console.log(error);
 		res.status(500).json({ error: error.message })
 	}
 }
@@ -125,6 +129,62 @@ module.exports.getAllAdmin = async (req, res) => {
 		res.status(200).json({ admins })
 		// }
 	} catch (error) {
+		res.status(400).json({ error: error.message })
+	}
+}
+
+
+// Get Favourite Controller_____________________
+module.exports.getFavouriteRoom = async (req, res) => {
+
+	console.log(req.user);
+	try {
+		if (!req.user) {
+			return res.status(403).json({ error: "User Not Found!" })
+		}
+		const favouriteRoom = await Favourite.find({ user: req.user._id }).populate('user').populate('room')
+
+		if (favouriteRoom.length) {
+
+			res.status(200).json({ favouriteRoom })
+		} else {
+
+			res.status(200).json({ message: "There is no Room Info You marked as Favourite." })
+		}
+	} catch (error) {
+		res.status(400).json({ error: error.message })
+	}
+}
+
+
+// Post Favourite Controller_____________________
+module.exports.postFavouriteRoom = async (req, res) => {
+	const { user, room } = req.body
+	try {
+
+		const favouriteRoom = await Favourite.create({ user, room })
+
+		res.status(201).json({ favouriteRoom })
+
+	} catch (error) {
+		console.log(error)
+		res.status(400).json({ error: error.message })
+	}
+}
+
+
+// Delete Favourite Controller_____________________
+module.exports.deleteFavouriteRoom = async (req, res) => {
+	const { id } = req.params
+	console.log(id)
+	try {
+		const favouriteRoom = await Favourite.deleteOne({ _id: id })
+		if (favouriteRoom) {
+			res.status(200).json({ message: 'Favourite item deleted Successfully!' })
+		}
+
+	} catch (error) {
+		console.log(error)
 		res.status(400).json({ error: error.message })
 	}
 }
