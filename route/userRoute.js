@@ -11,7 +11,7 @@ route.patch("/updateUser/:id", controller.updateUser)
 route.get("/getUser/:email", controller.getUser)
 route.get("/allUsers", controller.getUsers)
 route.get("/favourite-room", authenticateUser, controller.getFavouriteRoom)
-route.post("/favourite-room", authenticateUser, controller.postFavouriteRoom)
+route.post("/favourite-room", controller.postFavouriteRoom)
 route.delete("/favourite-room/:id", authenticateUser, controller.deleteFavouriteRoom)
 
 
