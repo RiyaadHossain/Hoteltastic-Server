@@ -28,6 +28,11 @@ const userSchema = mongoose.Schema({
     default: "ValidUser",
   },
   avatar: String,
+  title: String,
+  address: String,
+  facebook: String,
+  linkedIn: String,
+  twitter: String,
   paymentId: String,
   reviewId: String,
 });
