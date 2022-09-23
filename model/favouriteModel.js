@@ -4,11 +4,13 @@ const { Schema } = mongoose;
 const favouriteSchema = mongoose.Schema({
     user: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true
     },
     room: {
         type: Schema.Types.ObjectId,
-        ref: 'Room'
+        ref: 'Room',
+        required: true
     }
 })
 
