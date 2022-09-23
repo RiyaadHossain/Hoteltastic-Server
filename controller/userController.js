@@ -21,8 +21,11 @@ module.exports.updateUser = async (req, res) => {
 		const result = await User.findByIdAndUpdate({ _id: id }, updatedDetails, {
 			new: true,
 		})
+		
+		console.log(result)
 		res.status(201).json({ message: 'User Updated Successfully!', result })
 	} catch (error) {
+		console.log(error);
 		res.status(500).json({ error: error.message })
 	}
 }
