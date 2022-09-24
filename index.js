@@ -7,6 +7,7 @@ const app = express()
 const passport = require('passport')
 const passportSetup = require('./passport')
 const cookieSession = require('cookie-session')
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 dotenv.config()
 
 // Local Middlewares
