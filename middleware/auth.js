@@ -22,7 +22,7 @@ module.exports.authenticateUser = async (req, res, next) => {
 
 // Admin Athentication__________________________________
 module.exports.authenticateAdmin = async (req, res, next) => {
-    console.log(req.headers.authorization)
+
     if (req.headers.authorization) {
         const token = req.headers.authorization.split(" ")[1]
         const { _id, role } = jwt.decode(token, process.env.JWT_SECRET)
