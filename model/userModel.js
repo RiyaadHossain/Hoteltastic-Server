@@ -19,10 +19,20 @@ const userSchema = mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ["user", "admin"],
-    default: "user",
+    enum: ["User", "Admin"],
+    default: "User",
+  },
+  status: {
+    type: String,
+    enum: ["BanUser", "ValidUser"],
+    default: "ValidUser",
   },
   avatar: String,
+  title: String,
+  address: String,
+  facebook: String,
+  linkedIn: String,
+  twitter: String,
   paymentId: String,
   reviewId: String,
 });
