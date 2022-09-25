@@ -19,12 +19,12 @@ passport.use(
     function async(accessToken, refreshToken, profile, done) {
       const { name, email, picture } = profile._json;
       const newUser = new UserModel({ name, email, avatar: picture });
-      try {
-        const data = newUser.save();
-        res.status(200).json({ message: "sign in success", result: data });
-      } catch (error) {
-        res.status(500).json({ error: error.message });
-      }
+      // try {
+      //   const data = newUser.save();
+      //   res.status(200).json({ message: "sign in success", result: data });
+      // } catch (error) {
+      //   res.status(500).json({ error: error.message });
+      // }
       console.log({ name: name, email: email, picture: picture }); //* save it to db
       done(null, profile);
     }
