@@ -51,3 +51,24 @@ module.exports.deleteBooking = async (req, res) => {
 		res.status(500).json({ error: error.message })
 	}
 }
+
+// --------------------updating aa single booking info-----------------------------------
+
+// Update Review Controller____________________
+module.exports.updateBookingStatus = async (req, res) => {
+	const { id } = req.params
+	const updatedBooking = req.body
+
+	try {
+		const result = await Payment.findByIdAndUpdate(
+			{ _id: id },
+			{
+				$set: updatedBooking,
+			}
+			// { new: true }
+		)
+		res.status(201).json({ message: 'Your Review is Updated.', result })
+	} catch (error) {
+		res.status(500).json({ error: error.message })
+	}
+}

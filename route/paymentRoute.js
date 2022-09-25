@@ -7,5 +7,6 @@ const route = express.Router()
 route.post('/', paymentController.payment)
 route.get('/allBookings', paymentController.getAllBooking)
 route.delete('/deleteBooking/:id', paymentController.deleteBooking)
+route.put('/updateBooking/:id', paymentController.updateBookingStatus)
 
 module.exports = route
