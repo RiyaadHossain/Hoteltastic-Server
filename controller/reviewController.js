@@ -15,7 +15,7 @@ module.exports.getReview = async (req, res) => {
 
     const { id } = req.params
     try {
-        const review = await Review.findById({ _id: id })
+        const review = await Review.findById({ _id: id }).populate('user')
         res.status(200).json({ review })
     } catch (error) {
         res.status(500).json({ error: error.message })
