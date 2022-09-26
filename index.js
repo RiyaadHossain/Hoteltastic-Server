@@ -55,4 +55,13 @@ app.get('/', (req, res) => {
 	res.json({ message: 'Hello from Express server.' })
 })
 
+app.use((err, req, res, next) => {
+	if (err.message) {
+		res.status(500).json({ error: err.message })
+	} else {
+
+		res.status(500).json({ error: "Internal Server Error" })
+	}
+})
+
 app.listen(PORT, () => console.log(`Server running on PORT: ${PORT}`))
