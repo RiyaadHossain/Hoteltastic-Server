@@ -22,7 +22,6 @@ module.exports.updateUser = async (req, res) => {
 			new: true,
 		})
 		
-		console.log(result)
 		res.status(201).json({ message: 'User Updated Successfully!', result })
 	} catch (error) {
 		console.log(error);
@@ -160,7 +159,7 @@ module.exports.getFavouriteRoom = async (req, res) => {
 // Post Favourite Controller_____________________
 module.exports.postFavouriteRoom = async (req, res) => {
 	const { user, room } = req.body;
-	// console.log(user, room);
+	console.log(req.body);
 	try {
 
 		const favouriteRoom = await Favourite.create({ user, room })

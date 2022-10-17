@@ -30,7 +30,7 @@ module.exports.getRoom = async (req, res) => {
 module.exports.createRoom = async (req, res) => {
 
     const roomDetails = req.body
-
+    console.log(roomDetails)
     const newRoom = new Room(roomDetails)
     try {
         const result = await newRoom.save()

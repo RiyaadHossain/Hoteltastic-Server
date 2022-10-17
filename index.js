@@ -7,6 +7,7 @@ const app = express()
 const passport = require('passport')
 const passportSetup = require('./passport')
 const cookieSession = require('cookie-session')
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 dotenv.config()
 
 // Local Middlewares
@@ -53,6 +54,15 @@ app.use('/api/email', emailRoute)
 // Health Check
 app.get('/', (req, res) => {
 	res.json({ message: 'Hello from Express server.' })
+})
+
+app.use((err, req, res, next) => {
+	if (err.message) {
+		res.status(500).json({ error: err.message })
+	} else {
+
+		res.status(500).json({ error: "Internal Server Error" })
+	}
 })
 
 app.listen(PORT, () => console.log(`Server running on PORT: ${PORT}`))

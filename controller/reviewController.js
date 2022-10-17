@@ -3,7 +3,7 @@ const Review = require("../model/reviewModel")
 // Get All Reviews Controller____________________
 module.exports.allReviews = async (req, res) => {
     try {
-        const reviews = await Review.find()
+        const reviews = await Review.find().populate('user').populate('room')
         res.status(200).json({ reviews })
     } catch (error) {
         res.status(500).json({ error: error.message })
@@ -15,7 +15,7 @@ module.exports.getReview = async (req, res) => {
 
     const { id } = req.params
     try {
-        const review = await Review.findById({ _id: id })
+        const review = await Review.findById({ _id: id }).populate('user').populate('room')
         res.status(200).json({ review })
     } catch (error) {
         res.status(500).json({ error: error.message })
@@ -26,6 +26,7 @@ module.exports.getReview = async (req, res) => {
 module.exports.addReview = async (req, res) => {
 
     const review = req.body
+    console.log(review);
     const newReview = new Review(review)
     try {
         const result = await newReview.save()
