@@ -1,5 +1,5 @@
 const Payment = require('../model/paymentModel')
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
+const stripe = require('stripe')("sk_test_51L1DNCDSQhYM6brtoMFOGMzlwOkAL4vMvS1iUf1hpgqbGQz6gPhwCHZaBnj5UGvxHB0CSFU0kfNkqZNVVzWMM5xt00ZJLYCB03")
 
 // -----------------Posting booking/payment infoo controller---------------------------------
 module.exports.payment = async (req, res) => {
@@ -20,9 +20,10 @@ module.exports.payment = async (req, res) => {
 			paymentData,
 		})
 	} catch (error) {
+		console.log(error);
 		res.json({
 			message: 'Payment failed',
-			success: false,
+			error: error.message,
 		})
 	}
 }
