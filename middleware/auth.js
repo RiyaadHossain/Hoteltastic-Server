@@ -3,7 +3,7 @@ const User = require('../model/userModel')
 
 // User Athentication__________________________________
 module.exports.authenticateUser = async (req, res, next) => {
-    console.log(req.headers)
+
     if (req.headers.authorization) {
         const token = req.headers.authorization.split(" ")[1]
         const credentials = jwt.decode(token, process.env.JWT_SECRET)
